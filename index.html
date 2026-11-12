@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AvtoOlam UZ — Jahon Avtomobil Brendlari Katalogi va Texnologiyalar</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Rajdhani (avtosport raqamlari va sarlavhalar uchun) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome ikonkalar -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        sport: ['Rajdhani', 'sans-serif'],
+                    },
+                    colors: {
+                        auto: {
+                            bg: '#06080d',
+                            surface: '#0e121b',
+                            card: '#131824',
+                            border: '#232a3b',
+                            red: '#ff2a4b',
+                            blue: '#00d2ff',
+                            silver: '#cbd5e1',
+                            gold: '#f59e0b'
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'speed-line': 'speedLine 2.5s linear infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.75', transform: 'scale(1)' },
+                            '50%': { opacity: '1', transform: 'scale(1.03)' },
+                        },
+                        speedLine: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(200%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #06080d;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Avtosalon atmosferasi uchun metallik va neon effektlar */
+        .showroom-glass {
+            background: rgba(19, 24, 36, 0.78);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .neon-card-hover {
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .neon-card-hover:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 210, 255, 0.55);
+            box-shadow: 0 15px 35px -10px rgba(0, 210, 255, 0.22), 0 0 15px rgba(255, 42, 75, 0.12);
+        }
+
+        .sport-glow-red {
+            box-shadow: 0 0 25px rgba(255, 42, 75, 0.28);
+        }
+
+        .electric-glow-blue {
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.25);
+        }
+
+        /* Maxsus skrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #06080d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232a3b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00d2ff;
+        }
+
+        /* Orqa fondagi nozik uglerod (carbon) to'ri */
+        .bg-carbon-grid {
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(0, 210, 255, 0.06) 0%, transparent 45%),
+                radial-gradient(circle at 80% 70%, rgba(255, 42, 75, 0.06) 0%, transparent 45%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+        }
+    </style>
+</head>
+<body class="bg-carbon-grid antialiased selection:bg-auto-red selection:text-white">
+
+    <!-- 1. RESPONSIV NAVIGATSIYA MENYUSI -->
+    <header class="fixed top-0 left-0 right-0 z-50 showroom-glass border-b border-auto-border/90">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logotip -->
+                <a href="#bosh-sahifa" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-auto-red via-rose-600 to-auto-blue p-[2px] shadow-lg shadow-auto-red/20 group-hover:scale-105 transition-transform">
+                        <div class="w-full h-full bg-auto-bg rounded-[14px] flex items-center justify-center">
+                            <i class="fa-solid fa-gauge-high text-auto-blue text-lg"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-sport font-bold text-2xl tracking-wider text-white uppercase">Avto<span class="text-auto-red">Olam</span> <span class="text-auto-blue text-sm">UZ</span></span>
+                        <span class="block text-[10px] tracking-[0.2em] uppercase text-slate-400">Premium Avto Katalog</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menyu -->
+                <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+                    <a href="#bosh-sahifa" class="hover:text-white transition-colors">Bosh sahifa</a>
+                    <a href="#brendlar" class="hover:text-auto-blue transition-colors">Brendlar katalogi</a>
+                    <a href="#taqqoslash" class="hover:text-auto-red transition-colors">Avto-taqqoslash</a>
+                    <a href="#maslahatchi" class="hover:text-auto-blue transition-colors">Avto-tanlov testi</a>
+                    <a href="#texnologiyalar" class="hover:text-white transition-colors">Texnologiyalar</a>
+                </nav>
+
+                <!-- Tezkor qidiruv va mobil tugma -->
+                <div class="flex items-center gap-3">
+                    <a href="#brendlar" id="quickSearchJumpBtn" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-auto-surface border border-auto-border hover:border-auto-blue text-slate-200 hover:text-auto-blue text-sm font-medium transition-all">
+                        <i class="fa-solid fa-magnifying-glass text-auto-blue"></i>
+                        <span>Brend qidirish</span>
+                    </a>
+                    <button id="mobileMenuBtn" aria-label="Menyuni ochish" class="lg:hidden p-2.5 rounded-xl bg-auto-surface border border-auto-border text-slate-200 hover:text-auto-blue">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobil Menyu -->
+        <div id="mobileMenu" class="hidden lg:hidden showroom-glass border-b border-auto-border px-4 pt-2 pb-6 space-y-2">
+            <a href="#bosh-sahifa" class="mobile-nav-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800/70">Bosh sahifa</a>
+            <a href="#brendlar" class="mobile-nav-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800/70">Brendlar katalogi (12 brend)</a>
+            <a href="#taqqoslash" class="mobile-nav-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800/70">Avtomobillarni taqqoslash</a>
+            <a href="#maslahatchi" class="mobile-nav-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800/70">Avto-tanlash maslahatchisi</a>
+            <a href="#texnologiyalar" class="mobile-nav-link block px-4 py-3 rounded-xl text-slate-200 hover:bg-slate-800/70">Kelajak texnologiyalari</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. HERO BO'LIMI -->
+        <section id="bosh-sahifa" class="pt-32 pb-20 lg:pt-40 lg:pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Chap ustun: Matnlar va statistika -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-auto-red/10 border border-auto-red/30 text-auto-red text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Jahon Avtosanoati Raqamli Ko'rgazma Zali</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.12] tracking-tight">
+                        Afsonaviy Brendlar va <br class="hidden sm:block">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-auto-blue via-white to-auto-red">
+                            Kelajak Avtomobillari
+                        </span>
+                        Bir Joyda
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Nemis muhandisligi, italyan ehtirosi, amerika innovatsiyalari va osiyo texnologiyalari — jahonning eng mashhur 12 ta avtomobil brendi tarixi, texnik ko'rsatkichlari va modellari bilan tanishing.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#brendlar" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-gradient-to-r from-auto-red to-rose-600 text-white font-bold text-sm sm:text-base sport-glow-red hover:scale-[1.02] transition-all flex items-center justify-center gap-2.5">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span>Katalogni ko'rish va qidirish</span>
+                        </a>
+                        <a href="#taqqoslash" class="w-full sm:w-auto px-7 py-4 rounded-2xl showroom-glass border border-auto-border hover:border-auto-blue text-white font-semibold text-sm sm:text-base transition-all flex items-center justify-center gap-2.5">
+                            <i class="fa-solid fa-code-compare text-auto-blue"></i>
+                            <span>Modellarni taqqoslash</span>
+                        </a>
+                    </div>
+
+                    <!-- Asosiy statistika -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-auto-border/80 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <div class="font-sport text-3xl sm:text-4xl font-bold text-white">12<span class="text-auto-red">+</span></div>
+                            <div class="text-xs text-slate-400 mt-0.5">Jahon brendlari</div>
+                        </div>
+                        <div>
+                            <div class="font-sport text-3xl sm:text-4xl font-bold text-white">48<span class="text-auto-blue">+</span></div>
+                            <div class="text-xs text-slate-400 mt-0.5">Afsonaviy modellar</div>
+                        </div>
+                        <div>
+                            <div class="font-sport text-3xl sm:text-4xl font-bold text-white">100<span class="text-auto-blue">%</span></div>
+                            <div class="text-xs text-slate-400 mt-0.5">Elektr va gibrid tahlil</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- O'ng ustun: Dinamik SVG Sportkar & Neon Telemetry Vizuali -->
+                <div class="lg:col-span-6">
+                    <div class="relative showroom-glass rounded-3xl p-6 sm:p-8 border border-auto-border electric-glow-blue overflow-hidden">
+                        <!-- Yuqori telemetriya paneli -->
+                        <div class="flex items-center justify-between text-xs font-sport tracking-wider text-slate-400 mb-4">
+                            <span class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-auto-blue animate-ping"></span>
+                                AERO-DYNAMIC SHOWROOM // 2026
+                            </span>
+                            <span class="text-auto-red font-bold">0–100 KM/S: 2.1s</span>
+                        </div>
+
+                        <!-- Harakatlanuvchi tezlik chiziqlari -->
+                        <div class="relative py-6">
+                            <div class="absolute inset-x-0 top-1/3 h-[1px] bg-gradient-to-r from-transparent via-auto-blue/50 to-transparent animate-speed-line"></div>
+                            <div class="absolute inset-x-0 bottom-1/3 h-[1px] bg-gradient-to-r from-transparent via-auto-red/50 to-transparent animate-speed-line" style="animation-delay: 1.2s;"></div>
+
+                            <!-- Maxsus yuqori sifatli SVG Sportkar Silueti -->
+                            <svg viewBox="0 0 800 300" class="w-full h-auto drop-shadow-[0_12px_25px_rgba(0,210,255,0.28)] animate-pulse-glow" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="carBodyGrad" x1="80" y1="120" x2="720" y2="210" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#00d2ff"/>
+                                        <stop offset="48%" stop-color="#e2e8f0"/>
+                                        <stop offset="100%" stop-color="#ff2a4b"/>
+                                    </linearGradient>
+                                    <linearGradient id="glassGrad" x1="260" y1="90" x2="540" y2="155" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.45"/>
+                                        <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9"/>
+                                    </linearGradient>
+                                    <radialGradient id="wheelGlow" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="#00d2ff" stop-opacity="0.5"/>
+                                        <stop offset="100%" stop-color="#00d2ff" stop-opacity="0"/>
+                                    </radialGradient>
+                                </defs>
+
+                                <!-- Yer soyasi va neon aks -->
+                                <ellipse cx="400" cy="242" rx="330" ry="14" fill="url(#carBodyGrad)" opacity="0.22"/>
+
+                                <!-- Avtomobil kuzov konturi -->
+                                <path d="M68 192 C72 168, 118 152, 185 144 L278 96 C332 76, 445 76, 515 102 L615 142 C678 148, 725 162, 738 186 L732 208 L652 212 C648 172, 582 172, 578 212 L236 212 C232 172, 166 172, 162 212 L74 210 Z" 
+                                      fill="#111827" stroke="url(#carBodyGrad)" stroke-width="4" stroke-linejoin="round"/>
+
+                                <!-- Oynalar (kabina) -->
+                                <path d="M286 104 L348 88 C405 86, 462 90, 504 108 L565 138 L242 138 Z" 
+                                      fill="url(#glassGrad)" stroke="#38bdf8" stroke-width="2"/>
+
+                                <!-- Aerodinamik yon chiziq -->
+                                <path d="M245 174 C340 164, 465 164, 565 176" stroke="#ff2a4b" stroke-width="3" stroke-linecap="round"/>
+
+                                <!-- Old fara (LED neon) -->
+                                <path d="M675 162 L724 172 L695 178 Z" fill="#00d2ff"/>
+                                <!-- Orqa fara (LED qizil) -->
+                                <path d="M74 172 L112 166 L104 178 Z" fill="#ff2a4b"/>
+
+                                <!-- Orqa g'ildirak -->
+                                <circle cx="199" cy="212" r="46" fill="url(#wheelGlow)"/>
+                                <circle cx="199" cy="212" r="36" fill="#090d16" stroke="#cbd5e1" stroke-width="4"/>
+                                <circle cx="199" cy="212" r="22" fill="none" stroke="#ff2a4b" stroke-width="2.5" stroke-dasharray="10 6"/>
+                                <circle cx="199" cy="212" r="7" fill="#00d2ff"/>
+
+                                <!-- Old g'ildirak -->
+                                <circle cx="615" cy="212" r="46" fill="url(#wheelGlow)"/>
+                                <circle cx="615" cy="212" r="36" fill="#090d16" stroke="#cbd5e1" stroke-width="4"/>
+                                <circle cx="615" cy="212" r="22" fill="none" stroke="#00d2ff" stroke-width="2.5" stroke-dasharray="10 6"/>
+                                <circle cx="615" cy="212" r="7" fill="#ff2a4b"/>
+                            </svg>
+                        </div>
+
+                        <!-- Pastki texnik ko'rsatkichlar -->
+                        <div class="grid grid-cols-3 gap-3 pt-4 border-t border-auto-border text-center font-sport">
+                            <div class="bg-auto-bg/80 rounded-2xl p-3 border border-auto-border/70">
+                                <div class="text-xs text-slate-400 uppercase">Maks. Quvvat</div>
+                                <div class="text-lg sm:text-xl font-bold text-auto-blue">1,020+ OT KUCHI</div>
+                            </div>
+                            <div class="bg-auto-bg/80 rounded-2xl p-3 border border-auto-border/70">
+                                <div class="text-xs text-slate-400 uppercase">Maks. Tezlik</div>
+                                <div class="text-lg sm:text-xl font-bold text-white">350 KM/SOAT</div>
+                            </div>
+                            <div class="bg-auto-bg/80 rounded-2xl p-3 border border-auto-border/70">
+                                <div class="text-xs text-slate-400 uppercase">Drayv Turi</div>
+                                <div class="text-lg sm:text-xl font-bold text-auto-red">AWD / EV / V12</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. MASHINA BRENDLARI KATALOGI VA FILTRLASH -->
+        <section id="brendlar" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-auto-blue">Jahon Avtosanoati</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1.5">Mashina Brendlari Katalogi</h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+                        Mamlakat, toifa yoki model nomi bo'yicha qidiring. Har bir brendning tarixi, texnologiyalari va eng mashhur modellari bilan tanishish uchun <strong class="text-white">"Batafsil"</strong> tugmasini bosing.
+                    </p>
+                </div>
+
+                <!-- Real vaqtda qidiruv maydoni -->
+                <div class="w-full lg:w-96 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input 
+                        type="text" 
+                        id="brandSearchInput" 
+                        placeholder="Brend yoki model (masalan: Malibu, BMW, BYD)..." 
+                        class="w-full bg-auto-surface border border-auto-border focus:border-auto-blue focus:outline-none rounded-2xl pl-11 pr-10 py-3.5 text-sm text-white placeholder-slate-500 transition-colors"
+                    >
+                    <button id="clearSearchBtn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filtrlash panellari -->
+            <div class="showroom-glass rounded-3xl p-5 sm:p-6 border border-auto-border mb-10 space-y-5">
+                <!-- Mamlakat / Mintaqa bo'yicha filtr -->
+                <div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center gap-2">
+                        <i class="fa-solid fa-globe text-auto-blue"></i>
+                        <span>Mamlakat bo'yicha saralash:</span>
+                    </div>
+                    <div id="countryFilterGroup" class="flex flex-wrap gap-2">
+                        <button data-country="Barchasi" class="filter-country-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-auto-blue text-auto-bg transition-all">Barchasi</button>
+                        <button data-country="Germaniya" class="filter-country-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-auto-bg border border-auto-border text-slate-300 hover:border-auto-blue transition-all">🇩🇪 Germaniya</button>
+                        <button data-country="AQSH" class="filter-country-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-auto-bg border border-auto-border text-slate-300 hover:border-auto-blue transition-all">🇺🇸 AQSH</button>
+                        <button data-country="Xitoy" class="filter-country-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-auto-bg border border-auto-border text-slate-300 hover:border-auto-blue transition-all">🇨🇳 Xitoy</button>
+                        <button data-country="Yaponiya" class="filter-country-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-auto-bg border border-auto-border text-slate-300 hover:border-auto-blue transition-all">🇯🇵 Yaponiya</button>
+                        <button data-country="Italiya" class="filter-country-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-auto-bg border border-auto-border text-slate-300 hover:border-auto-blue transition-all">🇮🇹 Italiya</button>
+                        <button data-country="Janubiy Koreya" class="filter-country-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-auto-bg border border-auto-border text-slate-300 hover:border-auto-blue transition-all">🇰🇷 Janubiy Koreya</button>
+                    </div>
+                </div>
+
+                <!-- Toifa bo'yicha filtr -->
+                <div class="pt-4 border-t border-auto-border/70 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <div class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center gap-2">
+                            <i class="fa-solid fa-layer-group text-auto-red"></i>
+                            <span>Avtomobil toifasi:</span>
+                        </div>
+                        <div id="categoryFilterGroup" class="flex flex-wrap gap-2">
+                            <button data-category="Barchasi" class="filter-cat-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-auto-red text-white transition-all">Barchasi</button>
+                            <button data-category="Lyuks" class="filter-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-auto-bg border border-auto-border text-slate-300 hover:border-auto-red transition-all">Lyuks</button>
+                            <button data-category="Sportkar" class="filter-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-auto-bg border border-auto-border text-slate-300 hover:border-auto-red transition-all">Sportkar</button>
+                            <button data-category="Elektromobil" class="filter-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-auto-bg border border-auto-border text-slate-300 hover:border-auto-red transition-all">Elektromobil</button>
+                            <button data-category="Ommabop" class="filter-cat-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-auto-bg border border-auto-border text-slate-300 hover:border-auto-red transition-all">Ommabop</button>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-slate-400 self-start sm:self-end">
+                        Topildi: <strong id="visibleBrandsCount" class="text-white font-sport text-base">12</strong> ta brend
+                    </div>
+                </div>
+            </div>
+
+            <!-- Brendlar kartochkalari tarmog'i -->
+            <div id="brandsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- JavaScript orqali dinamik to'ldiriladi -->
+            </div>
+
+            <!-- Hech narsa topilmaganda -->
+            <div id="noBrandsMessage" class="hidden text-center py-16 showroom-glass rounded-3xl border border-auto-border">
+                <i class="fa-solid fa-car-burst text-4xl text-slate-500 mb-3"></i>
+                <h3 class="text-lg font-bold text-white">Mos keluvchi brend topilmadi</h3>
+                <p class="text-sm text-slate-400 mt-1 mb-5">Qidiruv so'zini o'zgartiring yoki filtrlarni tozalang.</p>
+                <button id="resetAllFiltersBtn" class="px-5 py-2.5 rounded-xl bg-auto-blue text-auto-bg font-bold text-sm">
+                    Barcha filtrlarni tiklash
+                </button>
+            </div>
+        </section>
+
+        <!-- 4. INTERAKTIV AVTOMOBILLARNI TAQQOSLASH (CAR COMPARISON TOOL) -->
+        <section id="taqqoslash" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-auto-red">Texnik Duel</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Avtomobillarni Yonma-Yon Taqqoslash</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">
+                    Ikki afsonaviy modelni tanlang va ularning quvvati, tezlanishi, maksimal tezligi hamda narxini vizual ko'rsatkichlar orqali solishtiring.
+                </p>
+            </div>
+
+            <div class="showroom-glass rounded-3xl p-6 sm:p-10 border border-auto-border">
+                <!-- Model tanlash selektorlari -->
+                <div class="grid md:grid-cols-11 gap-4 items-center mb-10">
+                    <!-- 1-Avtomobil -->
+                    <div class="md:col-span-5 bg-auto-bg p-4 rounded-2xl border border-auto-blue/40">
+                        <label for="carSelectA" class="block text-xs font-bold uppercase tracking-wider text-auto-blue mb-2">
+                            <i class="fa-solid fa-car-side mr-1"></i> 1-Avtomobilni tanlang
+                        </label>
+                        <select id="carSelectA" class="w-full bg-auto-surface border border-auto-border focus:border-auto-blue focus:outline-none rounded-xl px-4 py-3 text-sm font-semibold text-white">
+                            <!-- JS orqali to'ldiriladi -->
+                        </select>
+                    </div>
+
+                    <!-- VS belgisi -->
+                    <div class="md:col-span-1 flex justify-center">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-auto-blue to-auto-red flex items-center justify-center font-sport font-extrabold text-white text-lg shadow-lg">
+                            VS
+                        </div>
+                    </div>
+
+                    <!-- 2-Avtomobil -->
+                    <div class="md:col-span-5 bg-auto-bg p-4 rounded-2xl border border-auto-red/40">
+                        <label for="carSelectB" class="block text-xs font-bold uppercase tracking-wider text-auto-red mb-2">
+                            <i class="fa-solid fa-car-side mr-1"></i> 2-Avtomobilni tanlang
+                        </label>
+                        <select id="carSelectB" class="w-full bg-auto-surface border border-auto-border focus:border-auto-red focus:outline-none rounded-xl px-4 py-3 text-sm font-semibold text-white">
+                            <!-- JS orqali to'ldiriladi -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Vizual taqqoslash natijalari -->
+                <div id="comparisonBoard" class="space-y-7">
+                    <!-- JS orqali dinamik chiziladi -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. AVTOMOBIL TANLASH MASLAHATCHISI / VIKTORINA (INTERACTIVE CAR FINDER) -->
+        <section id="maslahatchi" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="showroom-glass rounded-3xl p-6 sm:p-10 border border-auto-blue/40 electric-glow-blue">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-auto-border">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-auto-blue">Aqlli Maslahatchi</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Sizga Qaysi Avtomobil Mos Keladi?</h2>
+                    </div>
+                    <span id="finderStepPill" class="self-start sm:self-center px-4 py-1.5 rounded-full bg-auto-bg border border-auto-border font-sport font-bold text-sm text-auto-blue">
+                        Savol 1 / 4
+                    </span>
+                </div>
+
+                <!-- Savollar bosqichi -->
+                <div id="finderQuestionArea" class="py-8">
+                    <h3 id="finderQuestionTitle" class="text-lg sm:text-xl font-bold text-white mb-6">
+                        Savol yuklanmoqda...
+                    </h3>
+                    <div id="finderOptionsGrid" class="grid sm:grid-cols-2 gap-4">
+                        <!-- Variantlar JS orqali chiqadi -->
+                    </div>
+                </div>
+
+                <!-- Natija bosqichi (yashirin) -->
+                <div id="finderResultArea" class="hidden py-8">
+                    <div class="bg-auto-bg rounded-3xl p-6 sm:p-8 border border-auto-border">
+                        <div class="flex flex-col md:flex-row items-center gap-8">
+                            <div class="w-full md:w-2/5 flex flex-col items-center justify-center p-6 rounded-2xl bg-gradient-to-br from-auto-surface to-auto-bg border border-auto-blue/30 text-center">
+                                <div id="recBrandBadge" class="w-16 h-16 rounded-2xl bg-auto-blue/15 text-auto-blue flex items-center justify-center text-3xl mb-3">
+                                    <i class="fa-solid fa-trophy"></i>
+                                </div>
+                                <span class="text-xs uppercase tracking-widest text-auto-blue font-bold">Ideal Tanlov</span>
+                                <h4 id="recModelName" class="font-sport text-2xl sm:text-3xl font-bold text-white mt-1"></h4>
+                                <span id="recBrandName" class="text-xs text-slate-400 mt-1"></span>
+                            </div>
+
+                            <div class="w-full md:w-3/5 space-y-4">
+                                <h4 class="text-lg font-bold text-white">Nima uchun aynan ushbu avtomobil?</h4>
+                                <p id="recReasonText" class="text-sm text-slate-300 leading-relaxed"></p>
+                                
+                                <div class="grid grid-cols-3 gap-3 pt-2 font-sport">
+                                    <div class="p-3 rounded-xl bg-auto-surface border border-auto-border">
+                                        <div class="text-[11px] text-slate-400">QUVVAT</div>
+                                        <div id="recPower" class="text-base sm:text-lg font-bold text-auto-blue"></div>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-auto-surface border border-auto-border">
+                                        <div class="text-[11px] text-slate-400">0–100 KM/S</div>
+                                        <div id="recAccel" class="text-base sm:text-lg font-bold text-auto-red"></div>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-auto-surface border border-auto-border">
+                                        <div class="text-[11px] text-slate-400">NARX</div>
+                                        <div id="recPrice" class="text-base sm:text-lg font-bold text-white"></div>
+                                    </div>
+                                </div>
+
+                                <div class="pt-3 flex flex-wrap gap-3">
+                                    <button id="restartFinderBtn" class="px-5 py-2.5 rounded-xl bg-auto-blue text-auto-bg font-bold text-xs sm:text-sm hover:opacity-90 transition">
+                                        <i class="fa-solid fa-rotate-right mr-1.5"></i> Qaytadan tanlash
+                                    </button>
+                                    <a href="#taqqoslash" class="px-5 py-2.5 rounded-xl border border-auto-border text-slate-200 hover:border-auto-red text-xs sm:text-sm font-semibold transition">
+                                        Boshqa model bilan taqqoslash
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. AVTO-YANGILIKLAR VA KELAJAK TEXNOLOGIYALARI -->
+        <section id="texnologiyalar" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-auto-blue">Innovatsiyalar Olami</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Kelajak Avtomobil Texnologiyalari</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">
+                    Zamonaviy avtosanoatni tubdan o'zgartirayotgan uchta asosiy texnologik yo'nalish.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Karta 1: Elektromobillar inqilobi -->
+                <article class="showroom-glass rounded-3xl p-7 border border-auto-border hover:border-auto-blue/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-auto-blue/15 border border-auto-blue/30 flex items-center justify-center text-auto-blue text-2xl mb-6">
+                            <i class="fa-solid fa-charging-station"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-auto-blue">800V ARXITEKTURA & BATAREYA</span>
+                        <h3 class="text-xl font-bold text-white mt-2 mb-3">Elektromobillar Inqilobi va Blade Batareyalar</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Yangi avlod litiy-temir-fosfat (LFP) va qattiq holatdagi (Solid-State) batareyalar bir quvvatlashda 800–1000 km masofa bosib o'tish hamda atigi 10–15 daqiqada 80% quvvat olish imkonini bermoqda.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-auto-border/80 flex items-center justify-between text-xs text-slate-400">
+                        <span>Yetakchilar: BYD, Tesla, Porsche</span>
+                        <span class="text-auto-blue font-semibold">0 g/km CO₂</span>
+                    </div>
+                </article>
+
+                <!-- Karta 2: Avtopilot va Sun'iy Intellekt -->
+                <article class="showroom-glass rounded-3xl p-7 border border-auto-border hover:border-auto-red/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-auto-red/15 border border-auto-red/30 flex items-center justify-center text-auto-red text-2xl mb-6">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-auto-red">LIDAR & NEYROTARMOQLAR</span>
+                        <h3 class="text-xl font-bold text-white mt-2 mb-3">Avtopilot va 4-Darajali Avtonom Boshqaruv</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            360 darajali kameralar, lazerli LiDAR radarlar va sun'iy intellekt chiplari avtomobilga tirbandliklarda mustaqil harakatlanish, xavfni oldindan aniqlash va avtoturargohga o'zi joylashish imkonini beradi.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-auto-border/80 flex items-center justify-between text-xs text-slate-400">
+                        <span>Yetakchilar: Mercedes-Benz, Tesla</span>
+                        <span class="text-auto-red font-semibold">AI Drive OS</span>
+                    </div>
+                </article>
+
+                <!-- Karta 3: DM-i va Gibrid Tizimlar -->
+                <article class="showroom-glass rounded-3xl p-7 border border-auto-border hover:border-amber-400/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl mb-6">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">PLUG-IN HYBRID (PHEV)</span>
+                        <h3 class="text-xl font-bold text-white mt-2 mb-3">Yangi Avlod Gibrid Texnologiyalari</h3>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Ichki yonuv dvigateli va elektr motorning uyg'unligi uzoq safarlarda yonilg'i quyish shoxobchasiga bog'lanmasdan 1,200 km dan ortiq masofani minimal (3.8 L / 100 km) sarf bilan bosib o'tishni ta'minlaydi.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-auto-border/80 flex items-center justify-between text-xs text-slate-400">
+                        <span>Yetakchilar: Toyota, BYD, Lexus</span>
+                        <span class="text-amber-400 font-semibold">1200+ km zaxira</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- 7. FUTER QISMI: ALOQA VA OBUNA FORMASI -->
+    <footer class="border-t border-auto-border bg-[#04060a] pt-16 pb-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-10 pb-12 border-b border-auto-border/80">
+                <!-- Brend haqida -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-auto-red to-auto-blue flex items-center justify-center text-white">
+                            <i class="fa-solid fa-gauge-high"></i>
+                        </div>
+                        <span class="font-sport font-bold text-2xl tracking-wider text-white uppercase">Avto<span class="text-auto-red">Olam</span> <span class="text-auto-blue text-sm">UZ</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+                        O'zbekiston va jahon avtomobil bozoridagi eng so'nggi modellar, texnik sharhlar va kelajak avtotexnologiyalari haqidagi zamonaviy raqamli platforma.
+                    </p>
+                    <div class="flex items-center gap-4 text-xs text-slate-400 pt-1">
+                        <span><i class="fa-solid fa-location-dot text-auto-red mr-1.5"></i>Toshkent sh., Sergeli Avto-hub</span>
+                        <span><i class="fa-solid fa-phone text-auto-blue mr-1.5"></i>+998 (71) 205-55-00</span>
+                    </div>
+                </div>
+
+                <!-- Tezkor havolalar -->
+                <div class="lg:col-span-3 space-y-3 text-sm">
+                    <h4 class="font-bold text-white uppercase tracking-wider text-xs">Bo'limlar</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li><a href="#brendlar" class="hover:text-auto-blue transition-colors">12 ta Jahon Brendlari</a></li>
+                        <li><a href="#taqqoslash" class="hover:text-auto-blue transition-colors">Modellarni Taqqoslash</a></li>
+                        <li><a href="#maslahatchi" class="hover:text-auto-blue transition-colors">Avto-Tanlash Maslahatchisi</a></li>
+                        <li><a href="#texnologiyalar" class="hover:text-auto-blue transition-colors">Elektromobil va Avtopilot</a></li>
+                    </ul>
+                </div>
+
+                <!-- Obuna formasi -->
+                <div class="lg:col-span-4 space-y-3">
+                    <h4 class="font-bold text-white uppercase tracking-wider text-xs">Avto-Dayjestga Obuna Bo'ling</h4>
+                    <p class="text-xs text-slate-400">Yangi modellar premyerasi va O'zbekiston avtobozori yangiliklarini birinchilardan bo'lib oling.</p>
+                    <form id="newsletterForm" class="flex gap-2 pt-1">
+                        <input type="email" id="newsletterEmail" required placeholder="Elektron pochtangiz..." class="flex-1 bg-auto-surface border border-auto-border focus:border-auto-blue focus:outline-none rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500">
+                        <button type="submit" class="px-5 py-3 rounded-xl bg-gradient-to-r from-auto-red to-rose-600 text-white font-bold text-sm hover:opacity-95 transition shrink-0">
+                            Obuna
+                        </button>
+                    </form>
+                    <p id="newsletterFeedback" class="hidden text-xs text-auto-blue font-medium pt-1"></p>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <div>&copy; 2026 AvtoOlam UZ (AutoVerse). Barcha huquqlar himoyalangan.</div>
+                <div>Premium Avtomobil Katalogi • O'zbek tilida</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BREND TAFSILOTLARI MODAL OYNASI (DETAIL MODAL) -->
+    <div id="brandModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+        <div class="showroom-glass border border-auto-border rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl">
+            <button id="closeBrandModalBtn" aria-label="Yopish" class="sticky top-0 float-right w-10 h-10 rounded-xl bg-auto-bg border border-auto-border text-slate-300 hover:text-white flex items-center justify-center z-10">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal sarlavha qismi -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-5 pb-6 border-b border-auto-border">
+                <div id="modalBrandLogo" class="w-20 h-20 rounded-2xl bg-auto-bg border border-auto-border flex items-center justify-center shrink-0 p-3">
+                    <!-- Maxsus SVG logo -->
+                </div>
+                <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-1">
+                        <span id="modalBrandCountry" class="px-2.5 py-0.5 rounded-md bg-auto-blue/15 text-auto-blue text-xs font-semibold"></span>
+                        <span id="modalBrandCategory" class="px-2.5 py-0.5 rounded-md bg-auto-red/15 text-auto-red text-xs font-semibold"></span>
+                    </div>
+                    <h3 id="modalBrandName" class="text-2xl sm:text-3xl font-extrabold text-white"></h3>
+                    <p id="modalBrandMeta" class="text-xs sm:text-sm text-slate-400 mt-1"></p>
+                </div>
+            </div>
+
+            <!-- Brend tarixi va asosiy ma'lumotlar -->
+            <div class="py-6 space-y-5">
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-auto-blue mb-2">Brend Tarixi va Merosi</h4>
+                    <p id="modalBrandHistory" class="text-sm text-slate-300 leading-relaxed"></p>
+                </div>
+
+                <!-- O'ziga xos texnologiyalar -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-auto-red mb-2.5">O'ziga Xos Texnologiyalar</h4>
+                    <div id="modalBrandTech" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Mashhur modellari va texnik ko'rsatkichlari -->
+                <div class="pt-2">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-3">Afsonaviy va Zamonaviy Modellari</h4>
+                    <div id="modalBrandModels" class="grid sm:grid-cols-2 gap-4">
+                        <!-- Modellar kartalari -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT MANTIQI -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // =========================================================
+            // 1. 12 TA MASHHUR AVTOMOBIL BRENDI MA'LUMOTLAR BAZASI
+            // =========================================================
+            const brandsData = [
+                {
+                    id: "mercedes",
+                    name: "Mercedes-Benz",
+                    country: "Germaniya",
+                    flag: "🇩🇪",
+                    categories: ["Lyuks", "Elektromobil"],
+                    founded: 1926,
+                    hq: "Shtutgart, Germaniya",
+                    founder: "Karl Benz va Gottlieb Daimler",
+                    shortDesc: "Dunyodagi birinchi avtomobil yaratuvchisi. Yuqori darajadagi hashamat, xavfsizlik va innovatsiyalar timsoli.",
+                    history: "1886-yilda Karl Benz tomonidan yaratilgan dunyodagi ilk benzinli avtomobildan boshlangan afsonaviy tarix. Bugungi kunda Mercedes-Benz S-Class va EQ elektr liniyasi orqali avtomobilsozlik standartlarini belgilab kelmoqda.",
+                    technologies: ["MBUX Hyperscreen AI", "4MATIC To'liq Uzatma", "DRIVE PILOT (3-darajali avtopilot)", "AIRMATIC Pnevmopodveska"],
+                    accent: "#00d2ff",
+                    svgLogo: `<svg viewBox="0 0 100 100" class="w-12 h-12"><circle cx="50" cy="50" r="44" fill="none" stroke="#e2e8f0" stroke-width="4"/><polygon points="50,8 56,46 50,50 44,46" fill="#e2e8f0"/><polygon points="86,71 50,54 50,50 55,47" fill="#e2e8f0"/><polygon points="14,71 45,47 50,50 50,54" fill="#e2e8f0"/></svg>`,
+                    models: [
+                        { name: "Mercedes-AMG GT 63 S", engine: "4.0L V8 Biturbo (639 o.k.)", accel: "3.2 soniya", speed: "315 km/soat", price: "$175,000" },
+                        { name: "Mercedes-Benz EQS 580", engine: "Dual Motor EV (516 o.k.)", accel: "4.3 soniya", speed: "210 km/soat", price: "$126,000" }
+                    ]
+                },
+                {
+                    id: "bmw",
+                    name: "BMW",
+                    country: "Germaniya",
+                    flag: "🇩🇪",
+                    categories: ["Lyuks", "Sportkar"],
+                    founded: 1916,
+                    hq: "Myunxen, Germaniya",
+                    founder: "Karl Rapp va Gustav Otto",
+                    shortDesc: "Haqiqiy haydash zavqi va sportcha dinamika. M-seriya modellari bilan avtosport olamida yetakchi.",
+                    history: "Dastlab aviatsiya dvigatellari ishlab chiqaruvchi zavod sifatida tashkil etilgan BMW keyinchalik mukammal 50:50 vazn taqsimotiga ega sport sedanlari va M-seriyasi bilan dunyo bo'ylab millionlab muxlislar orttirdi.",
+                    technologies: ["BMW xDrive", "M TwinPower Turbo", "iDrive 8.5 Kavisli Displey", "Carbon Core Kuzov"],
+                    accent: "#00d2ff",
+                    svgLogo: `<svg viewBox="0 0 100 100" class="w-12 h-12"><circle cx="50" cy="50" r="44" fill="#0f172a" stroke="#cbd5e1" stroke-width="4"/><circle cx="50" cy="50" r="28" fill="none" stroke="#cbd5e1" stroke-width="2"/><path d="M50 22 A28 28 0 0 1 78 50 L50 50 Z" fill="#00d2ff"/><path d="M50 78 A28 28 0 0 1 22 50 L50 50 Z" fill="#00d2ff"/><path d="M50 22 A28 28 0 0 0 22 50 L50 50 Z" fill="#f8fafc"/><path d="M50 78 A28 28 0 0 0 78 50 L50 50 Z" fill="#f8fafc"/></svg>`,
+                    models: [
+                        { name: "BMW M5 CS", engine: "4.4L V8 TwinTurbo (635 o.k.)", accel: "3.0 soniya", speed: "305 km/soat", price: "$142,000" },
+                        { name: "BMW i7 M70 xDrive", engine: "Dual Motor EV (650 o.k.)", accel: "3.7 soniya", speed: "250 km/soat", price: "$168,000" }
+                    ]
+                },
+                {
+                    id: "audi",
+                    name: "Audi",
+                    country: "Germaniya",
+                    flag: "🇩🇪",
+                    categories: ["Lyuks", "Sportkar"],
+                    founded: 1909,
+                    hq: "Ingolshtadt, Germaniya",
+                    founder: "August Horch",
+                    shortDesc: "Texnologiyalar orqali ustunlik (Vorsprung durch Technik). Afsonaviy Quattro tizimi va futuristik LED optika.",
+                    history: "To'rtta halqa (Audi, DKW, Horch, Wanderer birlashmasi) ramzi ostida birlashgan brend 1980-yillarda Quattro to'liq g'ildirakli uzatma tizimi bilan ralli musobaqalarida inqilob qildi.",
+                    technologies: ["Quattro Ultra AWD", "HD Matrix LED Laser", "Audi Virtual Cockpit", "e-tron 800V Platforma"],
+                    accent: "#ff2a4b",
+                    svgLogo: `<svg viewBox="0 0 140 60" class="w-14 h-8"><circle cx="25" cy="30" r="16" fill="none" stroke="#e2e8f0" stroke-width="3.5"/><circle cx="55" cy="30" r="16" fill="none" stroke="#e2e8f0" stroke-width="3.5"/><circle cx="85" cy="30" r="16" fill="none" stroke="#e2e8f0" stroke-width="3.5"/><circle cx="115" cy="30" r="16" fill="none" stroke="#e2e8f0" stroke-width="3.5"/></svg>`,
+                    models: [
+                        { name: "Audi RS e-tron GT", engine: "Dual Motor EV (637 o.k.)", accel: "3.3 soniya", speed: "250 km/soat", price: "$147,000" },
+                        { name: "Audi RS7 Sportback", engine: "4.0L V8 TFSI (621 o.k.)", accel: "3.4 soniya", speed: "305 km/soat", price: "$128,000" }
+                    ]
+                },
+                {
+                    id: "porsche",
+                    name: "Porsche",
+                    country: "Germaniya",
+                    flag: "🇩🇪",
+                    categories: ["Sportkar", "Lyuks", "Elektromobil"],
+                    founded: 1931,
+                    hq: "Shtutgart, Germaniya",
+                    founder: "Ferdinand Porsche",
+                    shortDesc: "Kundalik foydalanish uchun yaratilgan mukammal sportkarlar. Afsonaviy 911 va elektr Taycan muallifi.",
+                    history: "Ferdinand Porsche tomonidan asos solingan kompaniya 60 yildan ortiq vaqt davomida o'zining klassik siluetini saqlab kelayotgan Porsche 911 modeli bilan avtosport tarixiga muhrlangan.",
+                    technologies: ["PDK Ikki Muftali Transmissiya", "Porsche Active Suspension (PASM)", "800V Taycan Tez Quvvatlash", "Orqa O'q Boshqaruvi"],
+                    accent: "#ff2a4b",
+                    svgLogo: `<svg viewBox="0 0 100 100" class="w-12 h-12"><path d="M22 16 H78 V54 C78 76 50 90 50 90 C50 90 22 76 22 54 Z" fill="#1e293b" stroke="#f59e0b" stroke-width="4"/><line x1="22" y1="42" x2="78" y2="42" stroke="#f59e0b" stroke-width="3"/><line x1="50" y1="16" x2="50" y2="90" stroke="#ff2a4b" stroke-width="3"/><circle cx="50" cy="52" r="10" fill="#f59e0b"/></svg>`,
+                    models: [
+                        { name: "Porsche Taycan Turbo S", engine: "Dual Motor EV (750 o.k.)", accel: "2.8 soniya", speed: "260 km/soat", price: "$195,000" },
+                        { name: "Porsche 911 Turbo S", engine: "3.7L Boxer TwinTurbo (640 o.k.)", accel: "2.7 soniya", speed: "330 km/soat", price: "$230,000" }
+                    ]
+                },
+                {
+                    id: "tesla",
+                    name: "Tesla",
+                    country: "AQSH",
+                    flag: "🇺🇸",
+                    categories: ["Elektromobil", "Lyuks"],
+                    founded: 2003,
+                    hq: "Ostin, Texas, AQSH",
+                    founder: "Martin Eberhard, Marc Tarpenning, Elon Musk",
+                    shortDesc: "Elektromobillar va avtopilot texnologiyalarida jahon inqilobchisi. Minimalistik interyer va rekord darajadagi tezlanish.",
+                    history: "2003-yilda tashkil etilgan Tesla elektromobillar nafaqat ekologik toza, balki dunyodagi eng tezkor va aqlli avtomobillar bo'lishi mumkinligini isbotladi.",
+                    technologies: ["Full Self-Driving (FSD) AI", "Supercharger V4 Tarmog'i", "Tri-Motor Plaid Platforma", "Over-the-Air (OTA) Yangilanishlar"],
+                    accent: "#00d2ff",
+                    svgLogo: `<svg viewBox="0 0 100 100" class="w-12 h-12"><path d="M18 24 C38 16, 62 16, 82 24 L77 32 C61 26, 39 26, 23 32 Z" fill="#ff2a4b"/><path d="M26 36 L74 36 L55 46 L50 88 L45 46 Z" fill="#ff2a4b"/></svg>`,
+                    models: [
+                        { name: "Tesla Model S Plaid", engine: "Tri-Motor EV (1,020 o.k.)", accel: "2.1 soniya", speed: "322 km/soat", price: "$90,000" },
+                        { name: "Tesla Cybertruck Cyberbeast", engine: "Tri-Motor EV (845 o.k.)", accel: "2.7 soniya", speed: "209 km/soat", price: "$100,000" }
+                    ]
+                },
+                {
+                    id: "byd",
+                    name: "BYD",
+                    country: "Xitoy",
+                    flag: "🇨🇳",
+                    categories: ["Elektromobil", "Ommabop"],
+                    founded: 1995,
+                    hq: "Shenchjen, Xitoy",
+                    founder: "Van Chuanfu",
+                    shortDesc: "Dunyoning №1 elektromobil va gibrid ishlab chiqaruvchisi. O'zbekistonda eng ommabop zamonaviy brendlardan biri.",
+                    history: "Batareyalar ishlab chiqarishdan boshlagan BYD (Build Your Dreams) bugun o'zining xavfsiz Blade Battery va tejamkor DM-i gibrid tizimi bilan global avtobozorni zabt etmoqda.",
+                    technologies: ["Blade Battery (LFP)", "DM-i Super Hybrid", "e-Platform 3.0", "DiSus Aqlli Osma Tizimi"],
+                    accent: "#00d2ff",
+                    svgLogo: `<svg viewBox="0 0 120 60" class="w-14 h-8"><ellipse cx="60" cy="30" rx="54" ry="22" fill="none" stroke="#00d2ff" stroke-width="3"/><text x="60" y="37" text-anchor="middle" fill="#ffffff" font-family="Rajdhani, sans-serif" font-weight="700" font-size="24" letter-spacing="4">BYD</text></svg>`,
+                    models: [
+                        { name: "BYD Han EV", engine: "Dual Motor AWD (517 o.k.)", accel: "3.9 soniya", speed: "185 km/soat", price: "$42,000" },
+                        { name: "BYD Song Plus DM-i", engine: "1.5L + Elektr (218 o.k.)", accel: "7.9 soniya", speed: "180 km/soat", price: "$32,000" }
+                    ]
+                },
+                {
+                    id: "toyota",
+                    name: "Toyota",
+                    country: "Yaponiya",
+                    flag: "🇯🇵",
+                    categories: ["Ommabop", "Lyuks"],
+                    founded: 1937,
+                    hq: "Toyota shahri, Aichi, Yaponiya",
+                    founder: "Kiichiro Toyoda",
+                    shortDesc: "Ishonchlilik, chidamlilik va gibrid texnologiyalar etaloni. Land Cruiser va Camry kabi afsonalar yaratuvchisi.",
+                    history: "Yaponiyaning 'Kaizen' (doimiy takomillashuv) falsafasiga asoslangan Toyota dunyodagi eng yirik avtomobil ishlab chiqaruvchisi bo'lib, 1997-yilda ilk ommaviy gibrid (Prius) ni taqdim etgan.",
+                    technologies: ["Toyota Hybrid Synergy Drive", "TNGA Global Platforma", "Toyota Safety Sense 3.0", "Multi-Terrain Select 4WD"],
+                    accent: "#ff2a4b",
+                    svgLogo: `<svg viewBox="0 0 110 70" class="w-14 h-9"><ellipse cx="55" cy="35" rx="46" ry="28" fill="none" stroke="#e2e8f0" stroke-width="3.5"/><ellipse cx="55" cy="35" rx="14" ry="27" fill="none" stroke="#e2e8f0" stroke-width="3"/><ellipse cx="55" cy="21" rx="30" ry="11" fill="none" stroke="#e2e8f0" stroke-width="3"/></svg>`,
+                    models: [
+                        { name: "Toyota Camry Hybrid", engine: "2.5L Dynamic Force (225 o.k.)", accel: "7.2 soniya", speed: "210 km/soat", price: "$36,000" },
+                        { name: "Toyota Land Cruiser 300", engine: "3.5L V6 TwinTurbo (415 o.k.)", accel: "6.7 soniya", speed: "210 km/soat", price: "$95,000" }
+                    ]
+                },
+                {
+                    id: "lexus",
+                    name: "Lexus",
+                    country: "Yaponiya",
+                    flag: "🇯🇵",
+                    categories: ["Lyuks"],
+                    founded: 1989,
+                    hq: "Nagoya, Yaponiya",
+                    founder: "Eiji Toyoda",
+                    shortDesc: "Yapon mukammalligi va sokin hashamat. 'Takumi' ustalari qo'l mehnati va benuqson sifat.",
+                    history: "Toyota kompaniyasining premium brendi sifatida yaratilgan Lexus qisqa vaqt ichida Yevropa va Amerika lyuks sedanlari hamda krossoverlariga munosib raqobatchiga aylandi.",
+                    technologies: ["Takumi Qo'l Tekshiruvi", "DIRECT4 Elektr To'liq Uzatma", "Mark Levinson Reference Audio", "Lexus Safety System+"],
+                    accent: "#f59e0b",
+                    svgLogo: `<svg viewBox="0 0 100 70" class="w-13 h-9"><ellipse cx="50" cy="35" rx="42" ry="26" fill="none" stroke="#cbd5e1" stroke-width="3.5"/><path d="M44 17 L34 46 L68 46" fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+                    models: [
+                        { name: "Lexus LX 600", engine: "3.5L V6 TwinTurbo (409 o.k.)", accel: "6.9 soniya", speed: "210 km/soat", price: "$115,000" },
+                        { name: "Lexus RX 500h F Sport", engine: "2.4L Turbo Hybrid (366 o.k.)", accel: "6.2 soniya", speed: "210 km/soat", price: "$72,000" }
+                    ]
+                },
+                {
+                    id: "chevrolet",
+                    name: "Chevrolet",
+                    country: "AQSH",
+                    flag: "🇺🇸",
+                    categories: ["Ommabop", "Sportkar"],
+                    founded: 1911,
+                    hq: "Detroyt, Michigan, AQSH",
+                    founder: "Louis Chevrolet va William C. Durant",
+                    shortDesc: "O'zbekiston yo'llarining eng mashhur brendi hamda afsonaviy Amerika muskul-karlari (Corvette, Camaro) yaratuvchisi.",
+                    history: "1911-yilda Detroytda tashkil etilgan Chevrolet hamyonbop oilaviy sedanlardan tortib Le-Man poygalari g'olibi Corvette superkarigacha bo'lgan keng model qatoriga ega.",
+                    technologies: ["Ecotec Turbo Dvigatellar", "Magnetic Ride Control", "MyLink Multimediya", "Small Block V8 Merosi"],
+                    accent: "#f59e0b",
+                    svgLogo: `<svg viewBox="0 0 120 60" class="w-14 h-8"><polygon points="10,22 40,22 40,12 80,12 80,22 110,22 104,38 80,38 80,48 40,48 40,38 16,38" fill="#f59e0b" stroke="#fef3c7" stroke-width="2.5"/></svg>`,
+                    models: [
+                        { name: "Chevrolet Malibu XL", engine: "2.0L Turbo (237 o.k.)", accel: "6.5 soniya", speed: "240 km/soat", price: "$33,000" },
+                        { name: "Chevrolet Corvette Z06", engine: "5.5L V8 (670 o.k.)", accel: "2.6 soniya", speed: "312 km/soat", price: "$118,000" }
+                    ]
+                },
+                {
+                    id: "hyundai",
+                    name: "Hyundai",
+                    country: "Janubiy Koreya",
+                    flag: "🇰🇷",
+                    categories: ["Ommabop", "Elektromobil"],
+                    founded: 1967,
+                    hq: "Seul, Janubiy Koreya",
+                    founder: "Chung Ju-yung",
+                    shortDesc: "Zamonaviy dizayn, boy jihozlanish va jahon miqyosida e'tirof etilgan IONIQ elektromobillari.",
+                    history: "Janubiy Koreya sanoat mo'jizasining ramzi bo'lgan Hyundai bugungi kunda E-GMP elektr platformasi va N-seriya sport modellari bilan dunyoning TOP-3 avtokonsernlari qatoriga kiradi.",
+                    technologies: ["E-GMP 800V Elektr Platforma", "SmartSense Xavfsizlik Majmuasi", "V2L (Avtomobildan elektr berish)", "HTRAC To'liq Uzatma"],
+                    accent: "#00d2ff",
+                    svgLogo: `<svg viewBox="0 0 110 65" class="w-14 h-9"><ellipse cx="55" cy="32" rx="46" ry="25" fill="none" stroke="#00d2ff" stroke-width="3.5"/><path d="M35 46 L46 18 M64 46 L75 18 M40 34 C50 28, 60 36, 70 30" stroke="#e2e8f0" stroke-width="4.5" stroke-linecap="round"/></svg>`,
+                    models: [
+                        { name: "Hyundai IONIQ 5 N", engine: "Dual Motor EV (641 o.k.)", accel: "3.4 soniya", speed: "260 km/soat", price: "$67,000" },
+                        { name: "Hyundai Sonata N Line", engine: "2.5L Turbo (290 o.k.)", accel: "5.8 soniya", speed: "250 km/soat", price: "$35,000" }
+                    ]
+                },
+                {
+                    id: "ferrari",
+                    name: "Ferrari",
+                    country: "Italiya",
+                    flag: "🇮🇹",
+                    categories: ["Sportkar", "Lyuks"],
+                    founded: 1939,
+                    hq: "Maranello, Italiya",
+                    founder: "Enzo Ferrari",
+                    shortDesc: "Formula-1 afsonasi va italyan avtosportining qizil yuragi. Har bir modeli san'at asari darajasida yaratiladi.",
+                    history: "Enzo Ferrari tomonidan poyga jamoasi (Scuderia Ferrari) sifatida boshlangan brend dunyodagi eng nufuzli va eksklyuziv superkarlar ishlab chiqaruvchisiga aylandi.",
+                    technologies: ["F1-Trac Tortish Nazorati", "Manettino Rul Boshqaruvi", "SF90 Plug-in Hybrid V8", "Aktiv Aerodinamika"],
+                    accent: "#ff2a4b",
+                    svgLogo: `<svg viewBox="0 0 100 100" class="w-12 h-12"><rect x="24" y="14" width="52" height="72" rx="10" fill="#facc15" stroke="#ff2a4b" stroke-width="4"/><line x1="24" y1="26" x2="76" y2="26" stroke="#16a34a" stroke-width="4"/><path d="M46 68 L48 45 L58 36 L55 52 L62 68 Z" fill="#090d16"/></svg>`,
+                    models: [
+                        { name: "Ferrari SF90 Stradale", engine: "4.0L V8 + 3 Elektr (1,000 o.k.)", accel: "2.5 soniya", speed: "340 km/soat", price: "$525,000" },
+                        { name: "Ferrari Roma", engine: "3.9L V8 TwinTurbo (620 o.k.)", accel: "3.4 soniya", speed: "320 km/soat", price: "$247,000" }
+                    ]
+                },
+                {
+                    id: "lamborghini",
+                    name: "Lamborghini",
+                    country: "Italiya",
+                    flag: "🇮🇹",
+                    categories: ["Sportkar", "Lyuks"],
+                    founded: 1963,
+                    hq: "Sant'Agata Bolognese, Italiya",
+                    founder: "Ferruccio Lamborghini",
+                    shortDesc: "Qiruvchi samolyotlardan ilhomlangan agressiv dizayn, atmosferali V12 motor ovozi va cheksiz adrenalin.",
+                    history: "Ferruccio Lamborghini 1963-yilda dunyodagi eng mukammal GT avtomobilini yaratish maqsadida o'z zavodiga asos soldi. Miura, Countach, Aventador va Revuelto modellari superkar tushunchasini o'zgartirdi.",
+                    technologies: ["V12 HPEV Gibrid Tizim", "ALA Aktiv Aerodinamika", "Karbon Monokok Shassi", "LDVI Dinamika Boshqaruvi"],
+                    accent: "#f59e0b",
+                    svgLogo: `<svg viewBox="0 0 100 100" class="w-12 h-12"><path d="M22 18 H78 V55 C78 75 50 88 50 88 C50 88 22 75 22 55 Z" fill="#090d16" stroke="#f59e0b" stroke-width="4"/><path d="M36 62 L46 44 L62 42 L66 56 L52 64 Z" fill="#f59e0b"/></svg>`,
+                    models: [
+                        { name: "Lamborghini Revuelto", engine: "6.5L V12 + 3 Elektr (1,015 o.k.)", accel: "2.5 soniya", speed: "350 km/soat", price: "$608,000" },
+                        { name: "Lamborghini Urus Performante", engine: "4.0L V8 TwinTurbo (666 o.k.)", accel: "3.3 soniya", speed: "306 km/soat", price: "$270,000" }
+                    ]
+                }
+            ];
+
+            // =========================================================
+            // 2. MOBIL MENYU VA TEZKOR QIDIRUV FOKUSI
+            // =========================================================
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const quickSearchJumpBtn = document.getElementById('quickSearchJumpBtn');
+            const brandSearchInput = document.getElementById('brandSearchInput');
+
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            if (quickSearchJumpBtn) {
+                quickSearchJumpBtn.addEventListener('click', () => {
+                    setTimeout(() => brandSearchInput.focus(), 400);
+                });
+            }
+
+            // =========================================================
+            // 3. BRENDLAR KATALOGI FILTRLASH VA QIDIRUV TIZIMI
+            // =========================================================
+            const brandsGrid = document.getElementById('brandsGrid');
+            const noBrandsMessage = document.getElementById('noBrandsMessage');
+            const visibleBrandsCount = document.getElementById('visibleBrandsCount');
+            const clearSearchBtn = document.getElementById('clearSearchBtn');
+            const resetAllFiltersBtn = document.getElementById('resetAllFiltersBtn');
+
+            let selectedCountry = "Barchasi";
+            let selectedCategory = "Barchasi";
+            let searchQuery = "";
+
+            function renderBrands() {
+                brandsGrid.innerHTML = "";
+
+                const filtered = brandsData.filter(brand => {
+                    const matchCountry = selectedCountry === "Barchasi" || brand.country === selectedCountry;
+                    const matchCategory = selectedCategory === "Barchasi" || brand.categories.includes(selectedCategory);
+                    const q = searchQuery.toLowerCase().trim();
+                    const matchSearch = !q || 
+                        brand.name.toLowerCase().includes(q) || 
+                        brand.country.toLowerCase().includes(q) ||
+                        brand.models.some(m => m.name.toLowerCase().includes(q));
+
+                    return matchCountry && matchCategory && matchSearch;
+                });
+
+                visibleBrandsCount.textContent = filtered.length;
+
+                if (filtered.length === 0) {
+                    brandsGrid.classList.add('hidden');
+                    noBrandsMessage.classList.remove('hidden');
+                    return;
+                }
+
+                brandsGrid.classList.remove('hidden');
+                noBrandsMessage.classList.add('hidden');
+
+                filtered.forEach(brand => {
+                    const card = document.createElement('div');
+                    card.className = "showroom-glass rounded-3xl p-6 border border-auto-border neon-card-hover flex flex-col justify-between cursor-pointer group";
+                    
+                    const categoryBadges = brand.categories.map(cat => 
+                        `<span class="px-2.5 py-0.5 rounded-md bg-auto-bg border border-auto-border text-[11px] text-slate-300">${cat}</span>`
+                    ).join('');
+
+                    card.innerHTML = `
+                        <div>
+                            <!-- Yuqori qator: Logo va davlat -->
+                            <div class="flex items-start justify-between gap-3 mb-5">
+                                <div class="w-16 h-16 rounded-2xl bg-auto-bg border border-auto-border flex items-center justify-center group-hover:border-auto-blue/50 transition-colors">
+                                    ${brand.svgLogo}
+                                </div>
+                                <div class="text-right">
+                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-auto-bg border border-auto-border text-xs font-medium text-slate-200">
+                                        <span>${brand.flag}</span>
+                                        <span>${brand.country}</span>
+                                    </span>
+                                    <div class="text-[11px] text-slate-500 font-sport mt-1.5">Tashkil topgan: ${brand.founded}</div>
+                                </div>
+                            </div>
+
+                            <!-- Brend nomi va shtab-kvartira -->
+                            <h3 class="text-xl font-extrabold text-white group-hover:text-auto-blue transition-colors">${brand.name}</h3>
+                            <div class="text-xs text-slate-400 mt-0.5 mb-3 flex items-center gap-1.5">
+                                <i class="fa-solid fa-location-dot text-auto-red text-[10px]"></i>
+                                <span>${brand.hq}</span>
+                            </div>
+
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                                ${brand.shortDesc}
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                ${categoryBadges}
+                            </div>
+                            <button type="button" class="w-full py-2.5 px-4 rounded-xl bg-auto-bg group-hover:bg-gradient-to-r group-hover:from-auto-blue group-hover:to-cyan-400 text-slate-200 group-hover:text-auto-bg border border-auto-border group-hover:border-transparent font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2">
+                                <span>Batafsil</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    `;
+
+                    card.addEventListener('click', () => openBrandModal(brand));
+                    brandsGrid.appendChild(card);
+                });
+            }
+
+            // Mamlakat tugmalari
+            document.querySelectorAll('.filter-country-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-country-btn').forEach(b => {
+                        b.classList.remove('active', 'bg-auto-blue', 'text-auto-bg', 'font-semibold');
+                        b.classList.add('bg-auto-bg', 'border', 'border-auto-border', 'text-slate-300', 'font-medium');
+                    });
+                    btn.classList.remove('bg-auto-bg', 'border', 'border-auto-border', 'text-slate-300', 'font-medium');
+                    btn.classList.add('active', 'bg-auto-blue', 'text-auto-bg', 'font-semibold');
+                    selectedCountry = btn.dataset.country;
+                    renderBrands();
+                });
+            });
+
+            // Toifa tugmalari
+            document.querySelectorAll('.filter-cat-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-cat-btn').forEach(b => {
+                        b.classList.remove('active', 'bg-auto-red', 'text-white', 'font-semibold');
+                        b.classList.add('bg-auto-bg', 'border', 'border-auto-border', 'text-slate-300', 'font-medium');
+                    });
+                    btn.classList.remove('bg-auto-bg', 'border', 'border-auto-border', 'text-slate-300', 'font-medium');
+                    btn.classList.add('active', 'bg-auto-red', 'text-white', 'font-semibold');
+                    selectedCategory = btn.dataset.category;
+                    renderBrands();
+                });
+            });
+
+            // Qidiruv maydoni
+            brandSearchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                clearSearchBtn.classList.toggle('hidden', !searchQuery);
+                renderBrands();
+            });
+
+            clearSearchBtn.addEventListener('click', () => {
+                searchQuery = "";
+                brandSearchInput.value = "";
+                clearSearchBtn.classList.add('hidden');
+                renderBrands();
+            });
+
+            resetAllFiltersBtn.addEventListener('click', () => {
+                selectedCountry = "Barchasi";
+                selectedCategory = "Barchasi";
+                searchQuery = "";
+                brandSearchInput.value = "";
+                clearSearchBtn.classList.add('hidden');
+                document.querySelector('.filter-country-btn[data-country="Barchasi"]').click();
+                document.querySelector('.filter-cat-btn[data-category="Barchasi"]').click();
+            });
+
+            renderBrands();
+
+            // =========================================================
+            // 4. BREND TAFSILOTLARI MODAL OYNASI
+            // =========================================================
+            const brandModal = document.getElementById('brandModal');
+            const closeBrandModalBtn = document.getElementById('closeBrandModalBtn');
+
+            function openBrandModal(brand) {
+                document.getElementById('modalBrandLogo').innerHTML = brand.svgLogo;
+                document.getElementById('modalBrandCountry').textContent = `${brand.flag} ${brand.country}`;
+                document.getElementById('modalBrandCategory').textContent = brand.categories.join(' • ');
+                document.getElementById('modalBrandName').textContent = brand.name;
+                document.getElementById('modalBrandMeta').textContent = `Asos solingan: ${brand.founded}-yil | Asoschisi: ${brand.founder} | Bosh qarorgoh: ${brand.hq}`;
+                document.getElementById('modalBrandHistory').textContent = brand.history;
+
+                document.getElementById('modalBrandTech').innerHTML = brand.technologies.map(t => `
+                    <span class="px-3 py-1.5 rounded-xl bg-auto-bg border border-auto-blue/30 text-xs text-slate-200 flex items-center gap-1.5">
+                        <i class="fa-solid fa-microchip text-auto-blue"></i> ${t}
+                    </span>
+                `).join('');
+
+                document.getElementById('modalBrandModels').innerHTML = brand.models.map(m => `
+                    <div class="bg-auto-bg rounded-2xl p-4 border border-auto-border space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <h5 class="font-bold text-white text-base">${m.name}</h5>
+                            <span class="font-sport font-bold text-auto-blue text-sm">${m.price}</span>
+                        </div>
+                        <div class="text-xs text-slate-400">
+                            <i class="fa-solid fa-engine text-auto-red mr-1.5"></i> ${m.engine}
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-auto-border/80 text-xs font-sport">
+                            <div>
+                                <span class="text-slate-500 block">0–100 KM/SOAT</span>
+                                <span class="text-white font-bold text-sm">${m.accel}</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-500 block">MAKS. TEZLIK</span>
+                                <span class="text-auto-red font-bold text-sm">${m.speed}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                brandModal.classList.remove('hidden');
+                brandModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeBrandModal() {
+                brandModal.classList.add('hidden');
+                brandModal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+
+            closeBrandModalBtn.addEventListener('click', closeBrandModal);
+            brandModal.addEventListener('click', (e) => {
+                if (e.target === brandModal) closeBrandModal();
+            });
+
+            // =========================================================
+            // 5. INTERAKTIV AVTOMOBILLARNI TAQQOSLASH (CAR COMPARISON)
+            // =========================================================
+            const comparisonCars = [
+                { id: "tesla-plaid", name: "Tesla Model S Plaid", brand: "Tesla", hp: 1020, accel: 2.1, speed: 322, engine: "Tri-Motor Elektromobil", price: 90000 },
+                { id: "porsche-taycan", name: "Porsche Taycan Turbo S", brand: "Porsche", hp: 750, accel: 2.8, speed: 260, engine: "Dual Motor Elektromobil", price: 195000 },
+                { id: "bmw-m5cs", name: "BMW M5 CS", brand: "BMW", hp: 635, accel: 3.0, speed: 305, engine: "4.4L V8 TwinTurbo Benzin", price: 142000 },
+                { id: "byd-han", name: "BYD Han EV AWD", brand: "BYD", hp: 517, accel: 3.9, speed: 185, engine: "Dual Motor Elektromobil", price: 42000 },
+                { id: "merc-amggt", name: "Mercedes-AMG GT 63 S", brand: "Mercedes-Benz", hp: 639, accel: 3.2, speed: 315, engine: "4.0L V8 Biturbo Benzin", price: 175000 },
+                { id: "chev-malibu", name: "Chevrolet Malibu XL", brand: "Chevrolet", hp: 237, accel: 6.5, speed: 240, engine: "2.0L Turbo Benzin", price: 33000 },
+                { id: "toyota-camry", name: "Toyota Camry Hybrid", brand: "Toyota", hp: 225, accel: 7.2, speed: 210, engine: "2.5L Gibrid (Benzin+Elektr)", price: 36000 },
+                { id: "lambo-revuelto", name: "Lamborghini Revuelto", brand: "Lamborghini", hp: 1015, accel: 2.5, speed: 350, engine: "6.5L V12 + 3 Elektr Gibrid", price: 608000 }
+            ];
+
+            const carSelectA = document.getElementById('carSelectA');
+            const carSelectB = document.getElementById('carSelectB');
+            const comparisonBoard = document.getElementById('comparisonBoard');
+
+            comparisonCars.forEach((car, idx) => {
+                const optA = new Option(`${car.name} (${car.hp} o.k.)`, car.id);
+                const optB = new Option(`${car.name} (${car.hp} o.k.)`, car.id);
+                carSelectA.add(optA);
+                carSelectB.add(optB);
+            });
+
+            // Standart tanlov: Tesla Model S Plaid vs BMW M5 CS
+            carSelectA.value = "tesla-plaid";
+            carSelectB.value = "bmw-m5cs";
+
+            function renderComparison() {
+                const carA = comparisonCars.find(c => c.id === carSelectA.value);
+                const carB = comparisonCars.find(c => c.id === carSelectB.value);
+
+                // Foizlarni hisoblash
+                const maxHp = 1050;
+                const hpPctA = Math.min(100, Math.round((carA.hp / maxHp) * 100));
+                const hpPctB = Math.min(100, Math.round((carB.hp / maxHp) * 100));
+
+                // Tezlanishda kamroq soniya = yaxshiroq
+                const accelPctA = Math.max(15, Math.min(100, Math.round((1 - (carA.accel - 1.8) / 7) * 100)));
+                const accelPctB = Math.max(15, Math.min(100, Math.round((1 - (carB.accel - 1.8) / 7) * 100)));
+
+                const maxSpeed = 360;
+                const speedPctA = Math.min(100, Math.round((carA.speed / maxSpeed) * 100));
+                const speedPctB = Math.min(100, Math.round((carB.speed / maxSpeed) * 100));
+
+                comparisonBoard.innerHTML = `
+                    <!-- Dvigatel va Narx qatori -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-auto-bg rounded-2xl p-4 border border-auto-blue/30 flex items-center justify-between">
+                            <div>
+                                <div class="text-[11px] text-slate-400 uppercase">Dvigatel turi (${carA.brand})</div>
+                                <div class="text-sm font-bold text-white mt-0.5">${carA.engine}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-[11px] text-slate-400 uppercase">Taxminiy narx</div>
+                                <div class="font-sport text-xl font-bold text-auto-blue">$${carA.price.toLocaleString('en-US')}</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-auto-bg rounded-2xl p-4 border border-auto-red/30 flex items-center justify-between">
+                            <div>
+                                <div class="text-[11px] text-slate-400 uppercase">Dvigatel turi (${carB.brand})</div>
+                                <div class="text-sm font-bold text-white mt-0.5">${carB.engine}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-[11px] text-slate-400 uppercase">Taxminiy narx</div>
+                                <div class="font-sport text-xl font-bold text-auto-red">$${carB.price.toLocaleString('en-US')}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1. Dvigatel quvvati (HP) -->
+                    <div class="bg-auto-bg/70 rounded-2xl p-5 border border-auto-border">
+                        <div class="flex items-center justify-between text-xs sm:text-sm font-bold mb-3">
+                            <span class="text-auto-blue font-sport text-lg">${carA.hp} ot kuchi</span>
+                            <span class="text-slate-300 uppercase tracking-wider text-xs"><i class="fa-solid fa-horse-head mr-1.5 text-slate-400"></i>Dvigatel Quvvati</span>
+                            <span class="text-auto-red font-sport text-lg">${carB.hp} ot kuchi</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="h-3 bg-slate-900 rounded-full overflow-hidden flex justify-end">
+                                <div class="h-full bg-gradient-to-l from-auto-blue to-cyan-600 rounded-full transition-all duration-500" style="width: ${hpPctA}%"></div>
+                            </div>
+                            <div class="h-3 bg-slate-900 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-auto-red to-rose-600 rounded-full transition-all duration-500" style="width: ${hpPctB}%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 0-100 km/soat tezlanish -->
+                    <div class="bg-auto-bg/70 rounded-2xl p-5 border border-auto-border">
+                        <div class="flex items-center justify-between text-xs sm:text-sm font-bold mb-3">
+                            <span class="text-auto-blue font-sport text-lg">${carA.accel} soniya</span>
+                            <span class="text-slate-300 uppercase tracking-wider text-xs"><i class="fa-solid fa-stopwatch mr-1.5 text-slate-400"></i>0–100 km/soat Tezlanish (kamrog'i tezroq)</span>
+                            <span class="text-auto-red font-sport text-lg">${carB.accel} soniya</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="h-3 bg-slate-900 rounded-full overflow-hidden flex justify-end">
+                                <div class="h-full bg-gradient-to-l from-auto-blue to-cyan-600 rounded-full transition-all duration-500" style="width: ${accelPctA}%"></div>
+                            </div>
+                            <div class="h-3 bg-slate-900 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-auto-red to-rose-600 rounded-full transition-all duration-500" style="width: ${accelPctB}%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Maksimal tezlik -->
+                    <div class="bg-auto-bg/70 rounded-2xl p-5 border border-auto-border">
+                        <div class="flex items-center justify-between text-xs sm:text-sm font-bold mb-3">
+                            <span class="text-auto-blue font-sport text-lg">${carA.speed} km/soat</span>
+                            <span class="text-slate-300 uppercase tracking-wider text-xs"><i class="fa-solid fa-gauge-high mr-1.5 text-slate-400"></i>Maksimal Tezlik</span>
+                            <span class="text-auto-red font-sport text-lg">${carB.speed} km/soat</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="h-3 bg-slate-900 rounded-full overflow-hidden flex justify-end">
+                                <div class="h-full bg-gradient-to-l from-auto-blue to-cyan-600 rounded-full transition-all duration-500" style="width: ${speedPctA}%"></div>
+                            </div>
+                            <div class="h-3 bg-slate-900 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-auto-red to-rose-600 rounded-full transition-all duration-500" style="width: ${speedPctB}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            carSelectA.addEventListener('change', renderComparison);
+            carSelectB.addEventListener('change', renderComparison);
+            renderComparison();
+
+            // =========================================================
+            // 6. AVTOMOBIL TANLASH MASLAHATCHISI (INTERACTIVE CAR FINDER)
+            // =========================================================
+            const finderSteps = [
+                {
+                    question: "1. Avtomobil xaridi uchun rejalashtirilgan byudjetingiz qancha?",
+                    key: "budget",
+                    options: [
+                        { label: "$30,000 – $45,000", desc: "Hamyonbop, tejamkor va kundalik qulaylik", value: "mid", icon: "fa-wallet" },
+                        { label: "$50,000 – $120,000", desc: "Yuqori texnologiyali biznes va oilaviy klass", value: "upper", icon: "fa-briefcase" },
+                        { label: "$130,000 – $250,000", desc: "Premium lyuks va yuqori quvvatli sportkarlar", value: "luxury", icon: "fa-crown" },
+                        { label: "$250,000+", desc: "Cheklanmagan byudjet va eksklyuziv superkarlar", value: "hyper", icon: "fa-gem" }
+                    ]
+                },
+                {
+                    question: "2. Qaysi turdagi dvigatel va energiya manbaini afzal ko'rasiz?",
+                    key: "fuel",
+                    options: [
+                        { label: "100% Elektromobil (EV)", desc: "Sokin yurish, tezkor start va nol chiqindi", value: "ev", icon: "fa-bolt" },
+                        { label: "Gibrid (PHEV / Hybrid)", desc: "Elektr va benzin uyg'unligi, uzoq masofa", value: "hybrid", icon: "fa-leaf" },
+                        { label: "Klassik Turbo / V8 / V12 Benzin", desc: "Haqiqiy motor ovozi va mexanik hissiyot", value: "petrol", icon: "fa-fire-flame-curved" }
+                    ]
+                },
+                {
+                    question: "3. Asosiy haydash uslubingiz qanday?",
+                    key: "style",
+                    options: [
+                        { label: "Sokin, oilaviy va qulay safarlar", desc: "Yumshoq osma tizim va keng salon muhim", value: "comfort", icon: "fa-couch" },
+                        { label: "Dinamik va sportcha boshqaruv", desc: "Tezlanish va burilishlarda aniqlik", value: "sport", icon: "fa-flag-checkered" },
+                        { label: "Shahar va uzoq yo'llar uchun universal", desc: "Baland klirens va har qanday ob-havoga chidamlilik", value: "suv", icon: "fa-mountain-sun" }
+                    ]
+                },
+                {
+                    question: "4. Qaysi kuzov turi sizga ko'proq yoqadi?",
+                    key: "body",
+                    options: [
+                        { label: "Biznes yoki Sport Sedan", desc: "Klassik ko'rinish va aerodinamika", value: "sedan", icon: "fa-car" },
+                        { label: "Krossover yoki Yo'ltanlamas (SUV)", desc: "Keng yukxona va baland o'tirish", value: "suv", icon: "fa-truck-monster" },
+                        { label: "Kupe / Superkar", desc: "Diqqat markazida bo'lish va maksimal tezlik", value: "coupe", icon: "fa-rocket" }
+                    ]
+                }
+            ];
+
+            let currentFinderStep = 0;
+            const finderAnswers = {};
+
+            const finderStepPill = document.getElementById('finderStepPill');
+            const finderQuestionTitle = document.getElementById('finderQuestionTitle');
+            const finderOptionsGrid = document.getElementById('finderOptionsGrid');
+            const finderQuestionArea = document.getElementById('finderQuestionArea');
+            const finderResultArea = document.getElementById('finderResultArea');
+            const restartFinderBtn = document.getElementById('restartFinderBtn');
+
+            function renderFinderStep() {
+                const step = finderSteps[currentFinderStep];
+                finderStepPill.textContent = `Savol ${currentFinderStep + 1} / ${finderSteps.length}`;
+                finderQuestionTitle.textContent = step.question;
+                finderOptionsGrid.innerHTML = "";
+
+                step.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.type = "button";
+                    btn.className = "text-left p-5 rounded-2xl bg-auto-bg border border-auto-border hover:border-auto-blue hover:bg-auto-surface transition-all flex items-start gap-4 group";
+                    btn.innerHTML = `
+                        <div class="w-11 h-11 rounded-xl bg-auto-surface group-hover:bg-auto-blue/15 text-auto-blue flex items-center justify-center text-lg shrink-0 transition-colors">
+                            <i class="fa-solid ${opt.icon}"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-white text-sm sm:text-base group-hover:text-auto-blue transition-colors">${opt.label}</div>
+                            <div class="text-xs text-slate-400 mt-1">${opt.desc}</div>
+                        </div>
+                    `;
+                    btn.addEventListener('click', () => {
+                        finderAnswers[step.key] = opt.value;
+                        if (currentFinderStep < finderSteps.length - 1) {
+                            currentFinderStep++;
+                            renderFinderStep();
+                        } else {
+                            calculateCarRecommendation();
+                        }
+                    });
+                    finderOptionsGrid.appendChild(btn);
+                });
+            }
+
+            function calculateCarRecommendation() {
+                finderQuestionArea.classList.add('hidden');
+                finderResultArea.classList.remove('hidden');
+                finderStepPill.textContent = "Tavsiya Tayyor";
+
+                const { budget, fuel, style, body } = finderAnswers;
+                let rec = {
+                    model: "BYD Han EV AWD",
+                    brand: "BYD (Xitoy)",
+                    power: "517 o.k.",
+                    accel: "3.9 s",
+                    price: "$42,000",
+                    reason: "Sizning byudjetingiz va zamonaviy texnologiyalarga bo'lgan qiziqishingizga ko'ra, BYD Han EV eng maqbul tanlov. U bir quvvatlashda 600+ km masofa, hashamatli salon va sportcha tezlanishni birlashtiradi."
+                };
+
+                if (budget === "hyper" || (body === "coupe" && budget === "luxury")) {
+                    rec = {
+                        model: "Lamborghini Revuelto",
+                        brand: "Lamborghini (Italiya)",
+                        power: "1,015 o.k.",
+                        accel: "2.5 s",
+                        price: "$608,000",
+                        reason: "Maksimal darajadagi adrenalin, afsonaviy V12 dvigatel va gibrid texnologiya uyg'unligi. Siz uchun yaratilgan haqiqiy san'at asari."
+                    };
+                } else if (fuel === "ev" && (budget === "luxury" || style === "sport")) {
+                    rec = {
+                        model: "Porsche Taycan Turbo S",
+                        brand: "Porsche (Germaniya)",
+                        power: "750 o.k.",
+                        accel: "2.8 s",
+                        price: "$195,000",
+                        reason: "Elektromobillar orasida eng mukammal boshqaruv va nemis sportkar muhandisligini xohlovchilar uchun Porsche Taycan Turbo S tengsiz tanlovdir."
+                    };
+                } else if (fuel === "ev" && budget === "upper") {
+                    rec = {
+                        model: "Tesla Model S Plaid",
+                        brand: "Tesla (AQSH)",
+                        power: "1,020 o.k.",
+                        accel: "2.1 s",
+                        price: "$90,000",
+                        reason: "2.1 soniyada 100 km/soat tezlikka chiqish, ilg'or avtopilot va keng Supercharger tarmog'i bilan Tesla Model S Plaid o'z narxida raqobatsiz."
+                    };
+                } else if (fuel === "hybrid" && (body === "suv" || style === "suv")) {
+                    rec = {
+                        model: "BYD Song Plus DM-i",
+                        brand: "BYD (Xitoy)",
+                        power: "218 o.k.",
+                        accel: "7.9 s",
+                        price: "$32,000",
+                        reason: "O'zbekiston sharoiti uchun eng amaliy krossover: shahar ichida to'liq elektrda, uzoq safarlarda esa 1,100 km gacha gibrid rejimda tejamkor harakatlanadi."
+                    };
+                } else if (fuel === "hybrid" && body === "sedan") {
+                    rec = {
+                        model: "Toyota Camry Hybrid",
+                        brand: "Toyota (Yaponiya)",
+                        power: "225 o.k.",
+                        accel: "7.2 s",
+                        price: "$36,000",
+                        reason: "Afsonaviy yapon ishonchliligi, 100 km ga atigi 4.5 litr yonilg'i sarfi va oilaviy qulaylikni izlayotganlar uchun ideal biznes-sedan."
+                    };
+                } else if (body === "suv" && (budget === "upper" || budget === "luxury")) {
+                    rec = {
+                        model: "Lexus LX 600",
+                        brand: "Lexus (Yaponiya)",
+                        power: "409 o.k.",
+                        accel: "6.9 s",
+                        price: "$115,000",
+                        reason: "Har qanday yo'l sharoitida tengsiz o'tuvchanlik, Takumi ustalari sifati va yuqori maqomli hashamatli yo'ltanlamas."
+                    };
+                } else if (fuel === "petrol" && style === "sport") {
+                    rec = {
+                        model: "BMW M5 CS",
+                        brand: "BMW (Germaniya)",
+                        power: "635 o.k.",
+                        accel: "3.0 s",
+                        price: "$142,000",
+                        reason: "4 eshikli biznes-sedan qulayligi va poyga treki uchun tayyorlangan V8 TwinTurbo quvvatini o'zida mujassam etgan afsona."
+                    };
+                } else if (budget === "mid" && fuel === "petrol") {
+                    rec = {
+                        model: "Chevrolet Malibu XL",
+                        brand: "Chevrolet (AQSH)",
+                        power: "237 o.k.",
+                        accel: "6.5 s",
+                        price: "$33,000",
+                        reason: "2.0 litrli kuchli turbo dvigatel, keng salon va mahalliy bozorda xizmat ko'rsatish qulayligi bilan eng ommabop biznes-sedan."
+                    };
+                }
+
+                document.getElementById('recModelName').textContent = rec.model;
+                document.getElementById('recBrandName').textContent = rec.brand;
+                document.getElementById('recReasonText').textContent = rec.reason;
+                document.getElementById('recPower').textContent = rec.power;
+                document.getElementById('recAccel').textContent = rec.accel;
+                document.getElementById('recPrice').textContent = rec.price;
+            }
+
+            restartFinderBtn.addEventListener('click', () => {
+                currentFinderStep = 0;
+                finderResultArea.classList.add('hidden');
+                finderQuestionArea.classList.remove('hidden');
+                renderFinderStep();
+            });
+
+            renderFinderStep();
+
+            // =========================================================
+            // 7. OBUNA FORMASI
+            // =========================================================
+            const newsletterForm = document.getElementById('newsletterForm');
+            const newsletterFeedback = document.getElementById('newsletterFeedback');
+
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('newsletterEmail').value.trim();
+                newsletterFeedback.textContent = `Rahmat! ${email} manzili AvtoOlam UZ yangiliklariga muvaffaqiyatli obuna bo'ldi.`;
+                newsletterFeedback.classList.remove('hidden');
+                newsletterForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
